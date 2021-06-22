@@ -7,10 +7,13 @@ if ! docker info > /dev/null 2>&1; then
 	exit 1
 fi
 
+COMPOSER_HOME=/tmp
+
 # Run command
 docker run --rm --interactive --tty \
+  --env COMPOSER_HOME \
+  --volume ${COMPOSER_HOME:-$HOME/.config/composer}:$COMPOSER_HOME \
   --volume $PWD:/app \
   --user $(id -u):$(id -g) \
   --workdir /app \
-  php:latest \
-  php $1
+  composer $1
