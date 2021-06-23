@@ -2,7 +2,7 @@
 
 # Ensure that Docker is running...
 if ! docker info > /dev/null 2>&1; then
-	echo -e "${WHITE}Docker is not running.${NC}" >&2
+	echo -e "Docker is not running." >&2
 
 	exit 1
 fi
